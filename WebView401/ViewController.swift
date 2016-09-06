@@ -69,7 +69,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
 
                 // check if we got 401
                 if (response as! NSHTTPURLResponse).statusCode == 401 {
-                    print("got 401, insert token")
                     // build the login token
                     let token = NSURLQueryItem(name: "jwt", value: self.getTokenForObisID(Settings.ObisID))
                     
@@ -80,6 +79,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
                         print("uuh, still got 401 with token, bail out!")
                         completionHandler(data: data, response: response, error: error)
                     } else {
+                        print("got 401, insert token")
                         if newURL.queryItems == nil { newURL.queryItems = [] }
                         newURL.queryItems?.append(token)
                         request.URL = newURL.URL
