@@ -45,7 +45,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!,
                                           cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: NSTimeInterval(10))
-        fetchDataForRequest(request) { (data, response, _) in
+        fetchDataWithRequest(request) { (data, response, _) in
             dispatch_async(dispatch_get_main_queue()) {
                 print("response: \(response)")
                 self.webView.loadData(data!, MIMEType: response!.MIMEType!, textEncodingName: response!.textEncodingName ?? "utf-8", baseURL: request.URL!)
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         }
     }
 
-    private func fetchDataForRequest(request: NSMutableURLRequest, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void) {
+    private func fetchDataWithRequest(request: NSMutableURLRequest, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void) {
         
         print("fetch url: \(request.URL!)")
             
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
                     } else {
                         newURL.queryItems?.append(token)
                         request.URL = newURL.URL
-                        self.fetchDataForRequest(request, completionHandler: completionHandler)
+                        self.fetchDataWithRequest(request, completionHandler: completionHandler)
                     }
                     
                 } else {
