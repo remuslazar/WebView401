@@ -8,6 +8,10 @@
 
 import UIKit
 
+private struct Settings {
+    static let UserAgent = "WebView401 DAZ-iOS/0.0-dev"
+}
+
 class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var webView: UIWebView! { didSet { webView.delegate = self } }
@@ -85,6 +89,10 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSURLSessionConfiguration.defaultSessionConfiguration().HTTPAdditionalHeaders = [
+            "User-Agent": Settings.UserAgent,
+        ]
+        
         urlTextField.text = NSUserDefaults.standardUserDefaults().stringForKey("lastURL")
         // this URL will return a 401
 //        loadURL("https://api.openchargemap.io/v2/?action=comment_submission&format=json")
