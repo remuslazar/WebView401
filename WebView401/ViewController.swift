@@ -8,16 +8,42 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIWebViewDelegate {
+class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var webView: UIWebView! { didSet { webView.delegate = self } }
+    @IBOutlet weak var urlTextField: UITextField! { didSet { urlTextField.delegate = self } }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        if textField.text != nil {
+            // trim
+            textField.text = textField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+            // prepend http://
+            if !textField.text!.lowercaseString.hasPrefix("http://") {
+                textField.text = "http://" + textField.text!
+            }
+
+            // load URL if URL ok
+            if let _ = NSURL(string: textField.text!) {
+                loadURL(textField.text!)
+                return true
+            }
+        }
+
+        return false
+    }
+    
     private func loadURL(url: String) {
+        
+        NSUserDefaults.standardUserDefaults().setObject(url, forKey: "lastURL")
+        
         let request = NSMutableURLRequest(URL: NSURL(string: url)!,
                                           cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: NSTimeInterval(10))
-        request.HTTPMethod = "POST"
         fetchDataForRequest(request) { (data, response, _) in
             dispatch_async(dispatch_get_main_queue()) {
+                print("response: \(response)")
                 self.webView.loadData(data!, MIMEType: response!.MIMEType!, textEncodingName: response!.textEncodingName ?? "utf-8", baseURL: request.URL!)
             }
         }
@@ -59,8 +85,9 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        urlTextField.text = NSUserDefaults.standardUserDefaults().stringForKey("lastURL")
         // this URL will return a 401
-        loadURL("https://api.openchargemap.io/v2/?action=comment_submission&format=json")
+//        loadURL("https://api.openchargemap.io/v2/?action=comment_submission&format=json")
     }
 
 }

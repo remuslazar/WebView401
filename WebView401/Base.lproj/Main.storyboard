@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,19 +19,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5U-e6-jg3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL here.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-CH-2pw">
+                                <rect key="frame" x="20" y="28" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V5U-e6-jg3" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="2el-Zc-RDo"/>
                             <constraint firstAttribute="trailing" secondItem="V5U-e6-jg3" secondAttribute="trailing" id="30A-hq-5tb"/>
                             <constraint firstItem="V5U-e6-jg3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="33j-Vx-pSD"/>
-                            <constraint firstItem="V5U-e6-jg3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FNE-qF-eNY"/>
+                            <constraint firstItem="OzU-CH-2pw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="F97-SY-Fng"/>
+                            <constraint firstItem="OzU-CH-2pw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ctz-hZ-M4Z"/>
+                            <constraint firstItem="OzU-CH-2pw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tQO-ql-QF0"/>
+                            <constraint firstItem="V5U-e6-jg3" firstAttribute="top" secondItem="OzU-CH-2pw" secondAttribute="bottom" constant="8" symbolic="YES" id="tey-S5-nwt"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="urlTextField" destination="OzU-CH-2pw" id="0SC-WZ-Ncd"/>
                         <outlet property="webView" destination="V5U-e6-jg3" id="zh3-c3-yjN"/>
                     </connections>
                 </viewController>
