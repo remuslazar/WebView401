@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import JWT
 
 private struct Settings {
     static let UserAgent = "WebView401 DAZ-iOS/0.0-dev"
+    static let JWTSecret = "my-secret"
+    static let ObisID = "my-obis-id"
 }
 
 class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
 
+    private func getTokenForObisID(id: String) -> String {
+        return JWT.encode(["obisID": id], algorithm: .HS256(Settings.JWTSecret))
+    }
+    
     @IBOutlet weak var webView: UIWebView! { didSet { webView.delegate = self } }
     @IBOutlet weak var urlTextField: UITextField! { didSet { urlTextField.delegate = self } }
 
@@ -64,7 +71,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
                 if (response as! NSHTTPURLResponse).statusCode == 401 {
                     print("got 401, insert token")
                     // build the login token
-                    let token = NSURLQueryItem(name: "token", value: "foo")
+                    let token = NSURLQueryItem(name: "jwt", value: self.getTokenForObisID(Settings.ObisID))
                     
                     // build the new URL with our token
                     let newURL = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false)!
@@ -73,6 +80,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
                         print("uuh, still got 401 with token, bail out!")
                         completionHandler(data: data, response: response, error: error)
                     } else {
+                        if newURL.queryItems == nil { newURL.queryItems = [] }
                         newURL.queryItems?.append(token)
                         request.URL = newURL.URL
                         self.fetchDataWithRequest(request, completionHandler: completionHandler)

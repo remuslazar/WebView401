@@ -12,6 +12,8 @@
 		D859C1FC1D7F0A5B00BDEC3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D859C1FA1D7F0A5B00BDEC3C /* Main.storyboard */; };
 		D859C1FE1D7F0A5B00BDEC3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D859C1FD1D7F0A5B00BDEC3C /* Assets.xcassets */; };
 		D859C2011D7F0A5B00BDEC3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D859C1FF1D7F0A5B00BDEC3C /* LaunchScreen.storyboard */; };
+		D859C2091D7F2B6100BDEC3C /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D859C2081D7F2B6100BDEC3C /* JWT.framework */; };
+		D859C20F1D7F2C1700BDEC3C /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D859C20E1D7F2C1700BDEC3C /* CryptoSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		D859C1FD1D7F0A5B00BDEC3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D859C2001D7F0A5B00BDEC3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D859C2021D7F0A5B00BDEC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D859C2081D7F2B6100BDEC3C /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
+		D859C20E1D7F2C1700BDEC3C /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D859C20F1D7F2C1700BDEC3C /* CryptoSwift.framework in Frameworks */,
+				D859C2091D7F2B6100BDEC3C /* JWT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +44,8 @@
 		D859C1EA1D7F0A5A00BDEC3C = {
 			isa = PBXGroup;
 			children = (
+				D859C20E1D7F2C1700BDEC3C /* CryptoSwift.framework */,
+				D859C2081D7F2B6100BDEC3C /* JWT.framework */,
 				D859C1F51D7F0A5B00BDEC3C /* WebView401 */,
 				D859C1F41D7F0A5A00BDEC3C /* Products */,
 			);
@@ -74,6 +82,7 @@
 				D859C1EF1D7F0A5A00BDEC3C /* Sources */,
 				D859C1F01D7F0A5A00BDEC3C /* Frameworks */,
 				D859C1F11D7F0A5A00BDEC3C /* Resources */,
+				D859C20A1D7F2B6C00BDEC3C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,6 +138,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D859C20A1D7F2B6C00BDEC3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/JWT.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D859C1EF1D7F0A5A00BDEC3C /* Sources */ = {
@@ -249,6 +276,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WebView401/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.lazar.WebView401;
@@ -261,6 +292,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WebView401/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.lazar.WebView401;
