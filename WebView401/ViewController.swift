@@ -25,7 +25,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
             textField.text = textField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
             // prepend http://
-            if !textField.text!.lowercaseString.hasPrefix("http://") {
+            if !textField.text!.lowercaseString.containsString("://") {
                 textField.text = "http://" + textField.text!
             }
 
@@ -86,6 +86,15 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         }).resume()
         
     }
+    
+    // MARK: - UIWebViewDelegate
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        urlTextField?.text = request.URL?.absoluteString
+        return true
+    }
+    
+    // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
