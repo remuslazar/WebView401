@@ -119,6 +119,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         ]
         
         urlTextField.text = NSUserDefaults.standardUserDefaults().stringForKey("lastURL")
+        if let url = urlTextField.text { loadURL(url) }
         // this URL will return a 401
 //        loadURL("https://api.openchargemap.io/v2/?action=comment_submission&format=json")
     }
