@@ -94,6 +94,14 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         return true
     }
     
+    func webViewDidStartLoad(webView: UIWebView) {
+        urlTextField.backgroundColor = UIColor.lightGrayColor()
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        urlTextField.backgroundColor = nil
+    }
+    
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
