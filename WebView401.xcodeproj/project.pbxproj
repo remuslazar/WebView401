@@ -14,6 +14,8 @@
 		D859C2011D7F0A5B00BDEC3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D859C1FF1D7F0A5B00BDEC3C /* LaunchScreen.storyboard */; };
 		D859C2091D7F2B6100BDEC3C /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D859C2081D7F2B6100BDEC3C /* JWT.framework */; };
 		D859C20F1D7F2C1700BDEC3C /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D859C20E1D7F2C1700BDEC3C /* CryptoSwift.framework */; };
+		D859C22C1D8006D900BDEC3C /* UIWebView+DAZAutologin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D859C22B1D8006D900BDEC3C /* UIWebView+DAZAutologin.swift */; };
+		D859C22E1D80094D00BDEC3C /* DAZAutoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D859C22D1D80094D00BDEC3C /* DAZAutoLogin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D859C2021D7F0A5B00BDEC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D859C2081D7F2B6100BDEC3C /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
 		D859C20E1D7F2C1700BDEC3C /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		D859C22B1D8006D900BDEC3C /* UIWebView+DAZAutologin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+DAZAutologin.swift"; sourceTree = "<group>"; };
+		D859C22D1D80094D00BDEC3C /* DAZAutoLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAZAutoLogin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 			children = (
 				D859C1F61D7F0A5B00BDEC3C /* AppDelegate.swift */,
 				D859C1F81D7F0A5B00BDEC3C /* ViewController.swift */,
+				D859C22B1D8006D900BDEC3C /* UIWebView+DAZAutologin.swift */,
+				D859C22D1D80094D00BDEC3C /* DAZAutoLogin.swift */,
 				D859C1FA1D7F0A5B00BDEC3C /* Main.storyboard */,
 				D859C1FD1D7F0A5B00BDEC3C /* Assets.xcassets */,
 				D859C1FF1D7F0A5B00BDEC3C /* LaunchScreen.storyboard */,
@@ -164,6 +170,8 @@
 			files = (
 				D859C1F91D7F0A5B00BDEC3C /* ViewController.swift in Sources */,
 				D859C1F71D7F0A5B00BDEC3C /* AppDelegate.swift in Sources */,
+				D859C22E1D80094D00BDEC3C /* DAZAutoLogin.swift in Sources */,
+				D859C22C1D8006D900BDEC3C /* UIWebView+DAZAutologin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
